@@ -50,28 +50,28 @@ class URLController extends Controller
         $description = $request['description'];
 
         // Grab title of a webpage
-        // if(!$request['title'])
-        // {
-        //     $fp = file_get_contents($url);
-        //     if (!$fp) 
-        //         $title = '';
-        //     $res = preg_match("/<title>(.*)<\/title>/siU", $fp, $title_matches);
-        //     if (!$res) 
-        //         $title = '';
+        if(!$request['title'])
+        {
+            $fp = file_get_contents($url);
+            if (!$fp) 
+                $title = '';
+            $res = preg_match("/<title>(.*)<\/title>/siU", $fp, $title_matches);
+            if (!$res) 
+                $title = '';
 
-        //     // Clean up title: remove EOL's and excessive whitespace.
-        //     $title = preg_replace('/\s+/', ' ', $title_matches[1]);
-        //     $title = trim($title);
+            // Clean up title: remove EOL's and excessive whitespace.
+            $title = preg_replace('/\s+/', ' ', $title_matches[1]);
+            $title = trim($title);
 
-        // }
+        }
 
         
-        // // Grab description of a webpage
-        // if(!$description){
-        //     $tags = get_meta_tags($url);
+        // Grab description of a webpage
+        if(!$description){
+            $tags = get_meta_tags($url);
 
-        //     $description = $tags['description'];
-        // }
+            $description = $tags['description'];
+        }
 
         if (!$alias) {
             $time = time() . auth()->user()->id;
