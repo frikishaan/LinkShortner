@@ -13,7 +13,7 @@
    text-overflow: ellipsis;
  }
 </style>
-<div class="container">
+<div class="container my-4">
 
     <div class="card p-4 shadow-sm">
         <h3 class="text-center mb-3">Shorten a URL</h3>

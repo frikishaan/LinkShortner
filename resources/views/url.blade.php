@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-    <div class="container mb-2">
+    <div class="container my-2">
 
         <div class="card p-3">
             <h4>URL Details</h4>
@@ -110,7 +110,7 @@
     </div>
     
     {{-- Graphical representaion --}}
-    <div class="container mt-4 card shadow-sm">
+    <div class="container mt-4 mb-3 card shadow-sm">
         <br><br>
         <h3 class="text-center"><i class="fas fa-chart-line"></i>&nbsp; Insights</h3>
         <br><br>
