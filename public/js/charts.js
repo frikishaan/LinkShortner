@@ -1,4 +1,4 @@
-const url = "http://tini.fy/api/" + id;
+const url = "https://tini-fy.herokuapp.com/api/" + id;
 let csrf = document
     .querySelector("meta[name='csrf-token']")
     .getAttribute("content");
