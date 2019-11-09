@@ -50,7 +50,7 @@ Route::get('/test', function(){
 });
 
 // API routes
-Route::post('/api/{id}', 'UrlController@chart');
+Route::post('/api/{id}', 'URLController@chart');
 
 // Goes Last 
 Route::get('/{id}', 'URLController@redirect');
