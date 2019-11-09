@@ -77,14 +77,22 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="">
             @yield('content')
         </main>
     </div>
     
-    <footer class="container-fluid mt-3 bg-primary py-2 text-white">
-        <p class="text-center">{{ date('Y') }} &copy; Tinify Inc.</p>
-        <p class="text-center"><i class="fas fa-code"></i> with <i class="fas fa-heart text-danger"></i> by <a href="https://twitter.com/imishaan005" target="_blank">Ishaan Sheikh</a></p>
+    <footer class="container-fluid bg-primary py-2 text-white mb-0">
+        <div class="container">
+            <p class="float-left">{{ date('Y') }} &copy; Tinify Inc.
+            </p>
+            <p class="float-right"><i class="fas fa-code"></i> with <i class="fas fa-heart text-danger"></i> by <a href="https://twitter.com/imishaan005" target="_blank">Ishaan Sheikh</a></p>
+            <br>
+            <br>
+            <p class="text-center" style="font-size: 14px">
+            *This website is for demo purpose only. The code is available on <a href="https://github.com/sheikh005/LinkShortner" target="_blank">Github</a> and hosted on <a href="https://heroku.com" target="_blank">Heroku</a>. 
+            </p>
+        </div>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>  

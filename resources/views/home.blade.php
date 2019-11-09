@@ -28,7 +28,7 @@
             </div>
             
             Custom alias (optional): <br>
-            <small class="form-text text-muted">Leave blank and let the system choose.</small>
+            <small class="form-text text-muted">May contain alphabets or digits or '_' or '-' only OR just leave blank and let the system choose.</small>
             <div class="input-group mb-3 mt-1">
                 <div class="input-group-prepend">
                     <span class="input-group-text">http://tini.fy/</span>
@@ -46,36 +46,40 @@
     <hr>
     <h4 class="mt-3">Shortened URLs</h4> 
     <br>
-    <table class="table table-bordered mt-2 p-2 table-responsive-md">
-        <thead>
-            <tr>
-                {{-- <th>S.no</th> --}}
-                <th>Short URL</th>
-                <th>Long URL</th>
-                <th>Clicks</th>
-                <th>Active</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-            @foreach ($urls as $url)
-            <tr>
-                {{-- <td>{{ $url->id }}</td> --}}
-                <td><a href="{{ URL::to('/'. $url->url) }}" target="_blank">{{ $url->url }}</a></td>
-                <td class="text-truncate w-50"><div><a href="{{ $url->long_url }}" target="_blank">{{ $url->long_url }}</a></div></td>
-                <td>{{ $url->clicks }}</td>
-                <td>
-                    @if ($url->is_active)
-                        <i class="fas fa-check-circle text-success"></i>
-                    @else
-                        <i class="fas fa-times-circle text-danger"></i>                        
-                    @endif
-                </td>
-                <td><a href="{{ URL::to('u/'. $url->url) }}">View/Edit</a></td>
-            </tr>
-            @endforeach
- 
-        {{-- {{ $urls }} --}}
-     
-    </table>
+    @if(count($urls)>0)
+        <table class="table table-bordered mt-2 p-2 table-responsive-md">
+            <thead>
+                <tr>
+                    {{-- <th>S.no</th> --}}
+                    <th>Short URL</th>
+                    <th>Long URL</th>
+                    <th>Clicks</th>
+                    <th>Active</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+                @foreach ($urls as $url)
+                <tr>
+                    {{-- <td>{{ $url->id }}</td> --}}
+                    <td><a href="{{ URL::to('/'. $url->url) }}" target="_blank">{{ $url->url }}</a></td>
+                    <td class="text-truncate w-50"><div><a href="{{ $url->long_url }}" target="_blank">{{ $url->long_url }}</a></div></td>
+                    <td>{{ $url->clicks }}</td>
+                    <td>
+                        @if ($url->is_active)
+                            <i class="fas fa-check-circle text-success"></i>
+                        @else
+                            <i class="fas fa-times-circle text-danger"></i>                        
+                        @endif
+                    </td>
+                    <td><a href="{{ URL::to('u/'. $url->url) }}">View/Edit</a></td>
+                </tr>
+                @endforeach
+    
+            {{-- {{ $urls }} --}}
+        
+        </table>
+    @else
+        <h6 class="text-center">Your shortened URL(s) will be displayed here. </h6>
+    @endif
 </div>
 @endsection

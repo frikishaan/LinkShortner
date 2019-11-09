@@ -30,7 +30,7 @@ class URLController extends Controller
     public function shorten(Request $request){
         
         $rules = [
-            'alias' => 'bail|nullable|min:6|unique:urls,url',
+            'alias' => 'bail|nullable|min:6|unique:urls,url|regex:/^[a-zA-Z0-9-_\-]+$/',
             'url' => 'required|url',
         ];
 
@@ -46,32 +46,8 @@ class URLController extends Controller
 
         $url = $request['url'];
         $alias = $request['alias'];
-        $title = $request['title'];
-        $description = $request['description'];
-
-        // Grab title of a webpage
-        if(!$request['title'])
-        {
-            $fp = file_get_contents($url);
-            if (!$fp) 
-                $title = '';
-            $res = preg_match("/<title>(.*)<\/title>/siU", $fp, $title_matches);
-            if (!$res) 
-                $title = '';
-
-            // Clean up title: remove EOL's and excessive whitespace.
-            $title = preg_replace('/\s+/', ' ', $title_matches[1]);
-            $title = trim($title);
-
-        }
-
-        
-        // Grab description of a webpage
-        if(!$description){
-            $tags = get_meta_tags($url);
-
-            $description = $tags['description'];
-        }
+        $title = '';
+        // $description = '';
 
         if (!$alias) {
             $time = time() . auth()->user()->id;
@@ -82,7 +58,6 @@ class URLController extends Controller
         $new_url->url = $alias ;
         $new_url->long_url = $url;
         $new_url->title = $title;
-        $new_url->description = $description;
         $new_url->user_id = auth()->user()->id;
         $new_url->save();
 
@@ -134,10 +109,30 @@ class URLController extends Controller
      */
     public function update(Request $request, $id){
 
+        $rules = [
+            'alias' => 'bail|nullable|min:6|unique:urls,url',
+            'url' => 'required|url',
+            'title' => 'nullable|max:64',
+            // 'description' => 'nullable|max:100',
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+
+        if($validator->fails()){
+            // return $validator->errors();
+            Session::flash('error', 'There are some errors in your input!');
+            return redirect()->back()->withErrors($validator)
+                        ->withInput();
+        }
+
         $url = Url::where('url', $id)->first();
 
-        $url->url = $request['alias'];
+        if($request['alias'] !== '') {
+            $url->url = $request['alias'];
+        }
         $url->long_url = $request['url'];
+        $url->title = ($request['title'] !== '')? $request['title']:'';
         $url->save();
 
         Session::flash('success', 'URL value has been updated!');
