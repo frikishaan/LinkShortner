@@ -31,7 +31,6 @@
             <p><b>Short URL</b> : <a href="{{ URL::to('/'. $url->url) }}" target="_blank">{{ env('APP_URL') }}/{{ $url->url }}</a></p>
             <p><b>Long URL</b> : <a href="{{ $url->long_url }}" target="_blank">{{ $url->long_url }}</a></p>
             <p><b>Title</b> : <span class="text-success">{{ $url->title }}</span></p>
-            <p><b>Description</b> : {!! $url->description !!}</p>
             <p><b>Created at</b>:  {{ \Carbon\Carbon::parse($url->created_at)->format('d-M-Y') }}</p>   
             
             <p>
