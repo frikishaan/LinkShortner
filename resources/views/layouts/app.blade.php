@@ -3,6 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Meta -->
+    <meta name="description" content="A Laravel based URL shotner like bit.ly.">
+    <meta name="author" content="Ishaan Sheikh">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
